@@ -12,6 +12,47 @@ import session from 'express-session';
 
 import api from './routes';
 
+import {
+  GraphQLObjectType,
+  GraphQLSchema
+ } from 'graphql'
+
+// Import express-graphql an easy express integration of https://github.com/graphql/graphiql
+import graphqlHTTP from 'express-graphql'
+
+// Import GraphQL Queries
+import userQueries from './models-g/user/userQueries'
+
+// Import GraphQL Mutations
+import userMutations from './models-g/user/userMutations'
+
+// Setup GraphQL RootQuery
+let RootQuery = new GraphQLObjectType({
+ name: 'Query',
+ description: 'Realize Root Query',
+ fields: () => ({
+   user: userQueries.user,
+   users: userQueries.users,
+   userId: userQueries.userId,
+   userByName: userQueries.userByName
+ })
+})
+
+// Setup GraphQL RootMutation
+let RootMutation = new GraphQLObjectType({
+ name: 'Mutation',
+ description: 'Realize Root Mutations',
+ fields: () => ({
+   addUser: userMutations.addUser,
+   updateUser: userMutations.updateUser
+ })
+})
+
+// Set up GraphQL Schema with our RootQuery and RootMutation
+let schema = new GraphQLSchema({
+ query: RootQuery,
+ mutation: RootMutation
+})
 
 const app = express();
 const port = 3000;
@@ -35,6 +76,9 @@ app.use(session({
 }));
 
 app.use('/', express.static(path.join(__dirname, './../public')));
+
+//app.use('/graphql', function(){console.log('gggg');});
+app.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
 
 /* setup routers & static directory */
 app.use('/api', api);
