@@ -55,8 +55,8 @@ let schema = new GraphQLSchema({
 })
 
 const app = express();
-const port = 3000;
-const devPort = 4000;
+const port = 3003;
+const devPort = 4003;
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
