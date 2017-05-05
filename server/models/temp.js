@@ -15,19 +15,34 @@ const Account = new Schema({
     },
     friends : [{
         userId : String,
-        status : String
+        status : String,
+        class: String
     }],
     status: String
 });
 
-//페이지 또는 그룹
-const PageGroup = new Schema({
+//페이지
+const Page = new Schema({
     name: String,
     logo: String,
-    date: { type: Date, default: Date.now },
-    post : [{
-        postId : String
+    createDate: { type: Date, default: Date.now },
+    type : String,
+    follower : [{
+        userId : String,
+        status : String
     }],
+    info : {
+        createUserId : String,
+        location : String
+    },
+    status : String
+});
+
+//그룹
+const Group = new Schema({
+    name: String,
+    logo: String,
+    createDate: { type: Date, default: Date.now },
     type : String,
     member : [{
         userId : String,
@@ -37,8 +52,7 @@ const PageGroup = new Schema({
         createUserId : String,
         location : String
     },
-    status : String,
-    authentication : String
+    status : String
 });
 
 //게시글
@@ -51,5 +65,6 @@ const Post = new Schema({
         created: { type: Date, default: Date.now },
         edited: { type: Date, default: Date.now }
     },
-    status : String
+    status : String,
+    publishingScope: String
 });
