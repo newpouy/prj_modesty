@@ -18,6 +18,7 @@ class Home extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleStar = this.handleStar.bind(this);
+        this.handleStarList = this.handleStarList.bind(this);
         this.loadNewMemo = this.loadNewMemo.bind(this);
         this.loadOldMemo = this.loadOldMemo.bind(this);
         this.state = {
@@ -285,6 +286,16 @@ class Home extends React.Component {
         );
     }
 
+    /**
+     * * 좋아요 리스트를 화면에 표출
+     * @param {*} starArr 좋아요 누른 사람 ID List
+     * @param {*} e 마우스 이벤트 객체
+     */
+    handleStarList(starArr,e){
+        for(var i=0;i<starArr.length;i++){
+            Materialize.toast(starArr[i],2000);
+        }
+    }
     render() {
         const write = (<Write onPost={this.handlePost}/>);
 
@@ -316,7 +327,9 @@ class Home extends React.Component {
                 <MemoList data={this.props.memoData} currentUser={this.props.currentUser}
                     onEdit={this.handleEdit}
                     onRemove={this.handleRemove}
-                    onStar={this.handleStar}/>
+                    onStar={this.handleStar}
+                    onStarList={this.handleStarList}
+                    />
             </div>
         );
     }

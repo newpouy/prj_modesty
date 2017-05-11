@@ -23,6 +23,7 @@ class MemoList extends React.Component {
                         onEdit={this.props.onEdit}
                         onRemove={this.props.onRemove}
                         onStar={this.props.onStar}
+                        onStarList={this.props.onStarList}
                         index={i}
                         currentUser={this.props.currentUser}
                     />
@@ -48,7 +49,8 @@ MemoList.propTypes = {
     currentUser: React.PropTypes.string,
     onEdit: React.PropTypes.func,
     onRemove: React.PropTypes.func,
-    onStar: React.PropTypes.func
+    onStar: React.PropTypes.func,
+    onStarList: React.PropTypes.func
 };
 
 MemoList.defaultProps = {
@@ -62,6 +64,9 @@ MemoList.defaultProps = {
     },
     onStar: (id, index) => {
         console.error('onStar not defined');
+    },
+    onStarList: (arr) => {
+        console.error('onStarList not defined');
     }
 };
 

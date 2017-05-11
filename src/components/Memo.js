@@ -14,6 +14,7 @@ class Memo extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleStar = this.handleStar.bind(this);
+        this.handleStarList = this.handleStarList.bind(this);
     }
 
     componentDidMount() {
@@ -91,6 +92,11 @@ class Memo extends React.Component {
         this.props.onStar(id, index);
     }
 
+    handleStarList(e){
+        const starArr = this.props.data.starred;
+        this.props.onStarList(starArr,e.nativeEvent);
+    }
+    
     render() {
         var { data, ownership } = this.props;
 
@@ -126,7 +132,7 @@ class Memo extends React.Component {
                     {data.contents}
                 </div>
                 <div className="footer">
-                    <i className="material-icons log-footer-icon star icon-button" style={starStyle} onClick={this.handleStar}>star</i>
+                    <i className="material-icons log-footer-icon star icon-button" style={starStyle} onClick={this.handleStar} onMouseEnter={this.handleStarList}>star</i>
                     <span className="star-count">{data.starred.length}</span>
                 </div>
             </div>
