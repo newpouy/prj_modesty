@@ -288,13 +288,20 @@ class Home extends React.Component {
 
     /**
      * * 좋아요 리스트를 화면에 표출
-     * @param {*} starArr 좋아요 누른 사람 ID List
-     * @param {*} e 마우스 이벤트 객체
+     * @param {*} starArr 좋아요 누른 사람 ID Array
+     * @param {*} event 발생 시킨 target
      */
-    handleStarList(starArr,e){
+    handleStarList(starArr,target){
+        if(starArr.length == 0)
+            return;
+
+        let toolTip = ''
+
         for(var i=0;i<starArr.length;i++){
-            Materialize.toast(starArr[i],2000);
+            toolTip += `<span>${starArr[i]}</span>`;
         }
+
+        $(target).tooltip({delay: 50, tooltip:toolTip, html:true});
     }
     render() {
         const write = (<Write onPost={this.handlePost}/>);

@@ -94,7 +94,7 @@ class Memo extends React.Component {
 
     handleStarList(e){
         const starArr = this.props.data.starred;
-        this.props.onStarList(starArr,e.nativeEvent);
+        this.props.onStarList(starArr,e.currentTarget);
     }
     
     render() {
