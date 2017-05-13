@@ -340,3 +340,8 @@ ul.search-results {
     -webkit-animation-name: search-leave;
     animation-name: search-leave;
 }
+
+
+.collection.friend-list li.collection-item span.title{
+    font-size: 20px;
+}

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 //회원
 const Account = new Schema({
+    userId : String,
     username: String,
     password: String,
     created: { type: Date, default: Date.now },

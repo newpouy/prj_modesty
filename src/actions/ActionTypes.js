@@ -39,3 +39,8 @@ export const MEMO_STAR_FAILURE = "MEMO_STAR_FAILURE";
 export const SEARCH = "SEARCH";
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_FAILURE = "SEARCH_FAILURE";
+
+/* friend */
+export const FRIEND_LIST = "FRIEND_LIST";
+export const FRIEND_LIST_SUCCESS = "FRIEND_LIST_SUCCESS";
+export const FRIEND_LIST_FAILURE = "FRIEND_LIST_FAILURE";
