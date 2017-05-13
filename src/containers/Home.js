@@ -298,7 +298,7 @@ class Home extends React.Component {
         let toolTip = ''
 
         for(var i=0;i<starArr.length;i++){
-            toolTip += `<span>${starArr[i]}</span>`;
+            toolTip += `<p>${starArr[i]}</p>`;
         }
 
         $(target).tooltip({delay: 50, tooltip:toolTip, html:true});
