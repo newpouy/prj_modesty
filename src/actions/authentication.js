@@ -20,7 +20,7 @@ export function loginRequest(username, password) {
     return (dispatch) => {
             dispatch(login());
 
-            return axios.post('/api/account/signin', { username, password })
+            return axios.post('http://localhost:3003/api/account/signin', { username, password })
             .then((response) => {
                 dispatch(loginSuccess(username));
             }).catch((error) => {
@@ -55,7 +55,7 @@ export function registerRequest(username, password) {
         // inform register API is starting
         dispatch(register());
 
-        return axios.post('/api/account/signup', { username, password })
+        return axios.post('http://localhost:3003/api/account/signup', { username, password })
         .then((reponse) => {
             dispatch(registerSuccess());
         }).catch((error) => {
@@ -88,7 +88,7 @@ export function registerFailure(error) {
 export function getStatusRequest() {
     return (dispatch) => {
         dispatch(getStatus());
-        return axios.get('/api/account/getinfo')
+        return axios.get('http://localhost:3003/api/account/getinfo')
         .then((response) => {
             dispatch(getStatusSuccess(response.data.info.username));
         }).catch((error) => {
@@ -120,7 +120,7 @@ export function getStatusFailure() {
 /* LOGOUT */
 export function logoutRequest() {
     return (dispatch) => {
-        return axios.post('/api/account/logout')
+        return axios.post('http://localhost:3003/api/account/logout')
         .then((response) => {
             dispatch(logout());
         });

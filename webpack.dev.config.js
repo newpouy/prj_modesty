@@ -1,8 +1,9 @@
+var debug = process.env.NODE_ENV !== 'production';
 var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-
+    devtool: 'source-map',
     entry: [
         'babel-polyfill',
         './src/index.js',
@@ -13,7 +14,8 @@ module.exports = {
 
     output: {
         path: '/',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        sourceMapFilename: 'bundle.map',
     },
 
     devServer: {
@@ -61,7 +63,21 @@ module.exports = {
 
     resolve: {
         root: path.resolve('./src')
-    }
+    },
+    plugins: debug? [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __CLIENT__: true,
+      __SERVER__: false,
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true  // <-------- DISABLE redux-devtools HERE,
+    })
+] : [
+    new webpack.optimaze.DedupePlugin(),
+    new webpack.optimaze.OccurenceOrderPlugin(),
+    new webpack.optimaze.UglifyJsPlugin({mangle:false, sourcemap:false})
+]
 
 
 };
