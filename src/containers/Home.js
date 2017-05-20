@@ -18,6 +18,7 @@ class Home extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleStar = this.handleStar.bind(this);
+        this.handleStarList = this.handleStarList.bind(this);
         this.loadNewMemo = this.loadNewMemo.bind(this);
         this.loadOldMemo = this.loadOldMemo.bind(this);
         this.state = {
@@ -285,6 +286,23 @@ class Home extends React.Component {
         );
     }
 
+    /**
+     * * 좋아요 리스트를 화면에 표출
+     * @param {*} starArr 좋아요 누른 사람 ID Array
+     * @param {*} event 발생 시킨 target
+     */
+    handleStarList(starArr,target){
+        if(starArr.length == 0)
+            return;
+
+        let toolTip = ''
+
+        for(var i=0;i<starArr.length;i++){
+            toolTip += `<span>${starArr[i]}</span>`;
+        }
+
+        $(target).tooltip({delay: 50, tooltip:toolTip, html:true});
+    }
     render() {
         const write = (<Write onPost={this.handlePost}/>);
 
@@ -316,7 +334,9 @@ class Home extends React.Component {
                 <MemoList data={this.props.memoData} currentUser={this.props.currentUser}
                     onEdit={this.handleEdit}
                     onRemove={this.handleRemove}
-                    onStar={this.handleStar}/>
+                    onStar={this.handleStar}
+                    onStarList={this.handleStarList}
+                    />
             </div>
         );
     }
