@@ -41,7 +41,7 @@ class Header extends React.Component {
             <div>
                 <nav>
                     <div className="nav-wrapper white darken-1">
-                        <Link to="/" className="brand-logo black center">고hjlk중백</Link>
+                        <Link to="/" className="brand-logo black center">선형이네</Link>
 
                         <ul>
                             <li><a onClick={this.toggleSearch}><i className="material-icons">search</i></a></li>
