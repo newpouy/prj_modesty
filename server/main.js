@@ -53,14 +53,18 @@ let schema = new GraphQLSchema({
  query: RootQuery,
  mutation: RootMutation
 })
-
+var proxy = require('http-proxy-middleware');
 const app = express();
 const port = 3003;
 const devPort = 4003;
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-
+//app.use(proxy('/api', {target: 'http://localhost:9091', changeOrigin: true}));
 /* mongodb connection */
 const db = mongoose.connection;
 db.on('error', console.error);
@@ -71,7 +75,7 @@ mongoose.connect('mongodb://localhost/codelab');
 /* use session */
 app.use(session({
     secret: 'CodeLab1$1$234',
-    resave: false,
+    resave: true,
     saveUninitialized: true
 }));
 

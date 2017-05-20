@@ -10,7 +10,7 @@ export function searchRequest(keyword) {
 
         dispatch(search());
 
-        return axios.get('/api/account/search/' + keyword)
+        return axios.get('http://localhost:3003/api/account/search/' + keyword)
         .then((response) => {
             dispatch(searchSuccess(response.data));
         }).catch((error) => {
