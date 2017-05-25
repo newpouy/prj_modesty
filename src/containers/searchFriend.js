@@ -2,16 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FriendList } from 'components';
 /*import {
-    friendListRequest
+    searchFriendRequest
+    , friendRequest
 } from 'actions/friend';
 */
 
-class Friends extends React.Component {
+class searchFriend extends React.Component {
 
     constructor(props) {
         super(props);
+        
+        this.handleRequest = this.handleRequest.bind(handleRequest);
     }
 
+    handleRequest(_id, _friendId){
+        //return this.props.friendRequest(_id, _friendId).then.();
+
+        Materialize.toast('신청 완료!',2000);
+    }
     render() {
         const dumyFriendLst = 
             [
@@ -80,7 +88,7 @@ class Friends extends React.Component {
                     <FriendList data={this.props.friendList}/>
                      */
                 }
-                <FriendList data={dumyFriendLst}/>
+                <FriendList data={dumyFriendLst} isMyFriend={false} handleRequest={this.handleRequest}/>
             </div>
         );
     }
@@ -100,11 +108,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        friendListRequest: (_id) => {
+        searchFriendRequest: (_id) => {
             return dispatch(friendListRequest(_id));
+        }
+        , friendRequest: (_myId, _friendId)=>{
+            return dispatch(friendRequest(_myId, _friendId));
         }
     };
 };
 
 //차후 db에서 받아와 mapDispatchToProps 연결
-export default connect(mapStateToProps, null)(Friends);
+export default connect(mapStateToProps, null)(searchFriend);

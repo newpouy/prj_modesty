@@ -26,15 +26,23 @@ class Header extends React.Component {
     render() {
 
         const loginButton = (
-            <li>
-                <Link to="/login"><i className="material-icons">vpn_key</i></Link>
-            </li>
+            <ul>
+                <li>
+                    <Link to="/login"><i className="material-icons">vpn_key</i></Link>
+                    <Link to="/MyFriend"><i className="material-icons">list</i></Link>
+                    <Link to="/searchFriend"><i className="material-icons">playlist_add</i></Link>
+                </li>
+            </ul>
         );
 
         const logoutButton = (
-            <li>
-                <a onClick={this.props.onLogout}><i className="material-icons">lock_open</i></a>
-            </li>
+            <ul>
+                <li>
+                    <a onClick={this.props.onLogout}><i className="material-icons">lock_open</i></a>
+                    <Link to="/MyFriend"><i className="material-icons">list</i></Link>
+                    <Link to="/searchFriend"><i className="material-icons">playlist_add</i></Link>
+                </li>
+            </ul>
         );
 
         return (
@@ -48,9 +56,7 @@ class Header extends React.Component {
                         </ul>
 
                         <div className="right">
-                            <ul>
                                 { this.props.isLoggedIn ? logoutButton : loginButton }
-                            </ul>
                         </div>
                     </div>
                 </nav>

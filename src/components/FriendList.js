@@ -4,7 +4,6 @@ import { FriendCollection } from 'components';
 class FriendList extends React.Component {
     render() {
         const mapToComponents = data => {
-            console.log(12345);
             return data.map((friendInfo, i) => {
                 return (
                     <FriendCollection data={friendInfo}/>

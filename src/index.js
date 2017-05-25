@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import { App, Home, Login, Register, Wall, Friends } from 'containers';
+import { App, Home, Login, Register, Wall, MyFriend, searchFriend } from 'containers';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -31,7 +31,8 @@ ReactDOM.render(
                 <Route path="login" component={Login}/>
                 <Route path="register" component={Register}/>
                 <Route path="wall/:username" component={Wall}/>
-                <Route path="friends" component={Friends}/>
+                <Route path="MyFriend" component={MyFriend}/>
+                <Route path="searchFriend" component={searchFriend}/>
             </Route>
         </Router>
     </Provider>, rootElement
